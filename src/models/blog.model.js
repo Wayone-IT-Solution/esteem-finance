@@ -29,6 +29,9 @@ Blog.initialize({
   metaDescription: {
     type: DataTypes.TEXT,
   },
+  slug: {
+    type: DataTypes.STRING,
+  },
   metaKeywords: {
     type: DataTypes.JSON,
     validate: {

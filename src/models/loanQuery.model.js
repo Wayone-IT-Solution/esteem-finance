@@ -138,7 +138,7 @@ LoanQuery.initialize(
       type: DataTypes.DATE,
     },
     status: {
-      type: DataTypes.ENUM("Approved", "Disapproved", "Pending", "In Progress"),
+      type: DataTypes.ENUM("Approved", "Disapproved", "In Progress"),
       allowNull: false,
       default: "Pending",
     },
@@ -164,6 +164,88 @@ LoanQuery.initialize(
       type: DataTypes.INTEGER,
       validate: {
         min: 0, // Ensure it's a positive number
+      },
+    },
+    disApprovalReason: {
+      type: DataTypes.STRING(500),
+    },
+    approvedBankData: {
+      type: DataTypes.JSON,
+      validate: {
+        customValidator(value) {
+          if (value === undefined || value === null) return;
+
+          if (typeof value !== "object") {
+            throw {
+              status: false,
+              message: "approvedBankData must be a valid json",
+              httpStatus: httpStatus.BAD_REQUEST,
+            };
+          }
+
+          const { banks, recommendedBank } = value;
+
+          if (!Array.isArray(banks)) {
+            throw {
+              status: false,
+              message: "Banks must be an array",
+              httpStatus: httpStatus.BAD_REQUEST,
+            };
+          }
+
+          if (!recommendedBank) {
+            throw {
+              status: false,
+              message: "Recommended bank is required",
+              httpStatus: httpStatus.BAD_REQUEST,
+            };
+          }
+
+          banks.forEach((ele, index) => {
+            if (!ele.name) {
+              throw {
+                status: false,
+                message: `Bank name at index ${index} is missing`,
+                httpStatus: httpStatus.BAD_REQUEST,
+              };
+            }
+            if (
+              ele.interestRate === null ||
+              ele.interestRate === undefined ||
+              Number(ele.interestRate) < 0
+            ) {
+              throw {
+                status: false,
+                message: "Interest rate is required",
+                httpStatus: httpStatus.BAD_REQUEST,
+              };
+            }
+
+            if (
+              ele.tenure === null ||
+              ele.tenure === undefined ||
+              Number(ele.tenure) <= 0
+            ) {
+              throw {
+                status: false,
+                message: "Tenue is required",
+                httpStatus: httpStatus.BAD_REQUEST,
+              };
+            }
+
+            if (
+              ele.amount === null ||
+              ele.amount === undefined ||
+              Number(ele.amount) <= 0
+            ) {
+              throw {
+                status: false,
+                message: "Amount is required",
+                httpStatus: httpStatus.BAD_REQUEST,
+              };
+            }
+          });
+        },
       },
     },
   },

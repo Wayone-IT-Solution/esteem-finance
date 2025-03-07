@@ -11,7 +11,7 @@ class LoanQueryService extends Service {
     const { userId } = loanQueryData;
     loanQueryData.email = "" + Math.random();
     loanQueryData.driverLicenseNumber = "" + Math.random();
-    loanQueryData.status = loanQueryData.status ?? "Pending";
+    loanQueryData.status = loanQueryData.status ?? "In Progress";
     const loanQuery = new this.Model(loanQueryData);
     await loanQuery.validate();
     if (!userId) {

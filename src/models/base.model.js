@@ -221,6 +221,10 @@ class BaseModel extends Model {
       where: { id },
     });
 
+    const doc = await this.findByPk(id);
+
+    await this.saveFiles(doc);
+
     if (updatedCount !== 1) {
       throw {
         status: false,

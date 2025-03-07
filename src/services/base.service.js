@@ -19,10 +19,8 @@ class Service {
   }
 
   static async update(id, updates) {
-    const document = await this.Model.findByPk(id);
-    document.updateFields(updates);
-    await document.save();
-    return document;
+    const updatedDoc = await this.Model.updateById(id, updates);
+    return updatedDoc;
   }
 
   static async deleteDoc(id) {
