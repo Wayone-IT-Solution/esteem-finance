@@ -32,7 +32,7 @@ User.initialize(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      //unique: true,
     },
     dob: {
       type: DataTypes.DATE,
