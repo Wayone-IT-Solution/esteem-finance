@@ -51,7 +51,7 @@ class UserService extends Service {
 }
 
 async function defaultUser() {
-  const existing = await User.find({});
+  const existing = await User.findAll({});
   if (existing.length) return;
   const user = {
     role: "admin",
@@ -76,5 +76,7 @@ async function defaultUser() {
 
   await User.create(user);
 }
+
+defaultUser();
 
 export default UserService;
