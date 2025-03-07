@@ -1,8 +1,14 @@
 import express from "express";
-import { get, create, update, deleteDoc } from "#controllers/contact";
+import asyncHandler from "#utils/asyncHandler";
+import ContactController from "#controllers/contact";
 
 const router = express.Router();
 
-router.route("/:id?").get(get).post(create).put(update).delete(deleteDoc);
+router
+  .route("/:id?")
+  .get(asyncHandler(ContactController.get.bind(ContactController)))
+  .post(asyncHandler(ContactController.create.bind(ContactController)))
+  .put(ContactController.update.bind(ContactController))
+  .delete(ContactController.deleteDoc.bind(ContactController));
 
 export default router;
