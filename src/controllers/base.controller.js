@@ -1,3 +1,4 @@
+import httpStatus from "#utils/httpStatus";
 import { sendResponse } from "#utils/response";
 
 class Controller {
