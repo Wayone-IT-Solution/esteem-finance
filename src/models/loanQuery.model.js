@@ -139,7 +139,7 @@ LoanQuery.initialize(
       type: DataTypes.DATE,
     },
     status: {
-      type: DataTypes.ENUM("Approved", "Disapproved", "In Progress"),
+      type: DataTypes.ENUM("Approved", "Disapproved", "In Progress", "Pending"),
       allowNull: false,
       default: "Pending",
     },
