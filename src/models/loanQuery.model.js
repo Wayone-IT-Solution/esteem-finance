@@ -2,6 +2,7 @@ import Lead from "#models/lead";
 import User from "#models/user";
 import BaseModel from "#models/base";
 import { DataTypes } from "sequelize";
+import httpStatus from "#utils/httpStatus";
 
 class LoanQuery extends BaseModel {}
 
