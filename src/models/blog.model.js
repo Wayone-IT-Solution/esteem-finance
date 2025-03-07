@@ -24,7 +24,7 @@ Blog.initialize({
     type: DataTypes.TEXT,
   },
   metaTitle: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(1000),
   },
   metaDescription: {
     type: DataTypes.TEXT,
