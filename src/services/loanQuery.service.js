@@ -45,6 +45,11 @@ class LoanQueryService extends Service {
         };
       }
     }
+
+    if (loanQueryData.homeOwnerShip === "NO") {
+      loanQueryData.homeOwnerShip = "Rent";
+    }
+
     await this.Model.create(loanQueryData);
     return loanQuery;
   }
