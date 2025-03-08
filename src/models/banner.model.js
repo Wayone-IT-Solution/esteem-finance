@@ -1,5 +1,7 @@
 import BaseModel from "#models/base";
 import { DataTypes } from "sequelize";
+import httpStatus from "#utils/httpStatus";
+import { session } from "#middlewares/session";
 
 class Banner extends BaseModel {}
 
@@ -13,7 +15,6 @@ Banner.initialize({
   image: {
     type: DataTypes.STRING,
     file: true,
-    allowNull: false,
   },
   slug: {
     type: DataTypes.STRING,
