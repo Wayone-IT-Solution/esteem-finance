@@ -10,6 +10,7 @@ Faq.initialize({
   },
   answer: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
 });
 
