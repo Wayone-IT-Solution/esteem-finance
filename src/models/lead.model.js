@@ -1,3 +1,4 @@
+import User from "#models/user";
 import BaseModel from "#models/base";
 import { DataTypes } from "sequelize";
 
@@ -11,6 +12,13 @@ Lead.initialize(
     userType: {
       type: DataTypes.ENUM("Business", "Individual"),
       allowNull: false,
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: User,
+        key: User.primaryKeyAttribute,
+      },
     },
     title: {
       type: DataTypes.ENUM("Mr", "Mrs", "Ms", "Dr"),

@@ -18,6 +18,7 @@ LoanQuery.initialize(
         model: User,
         key: User.primaryKeyAttribute,
       },
+      allowNull: false,
     },
     leadId: {
       type: DataTypes.INTEGER,

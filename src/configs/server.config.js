@@ -14,7 +14,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const server = express();
 
-if (env.NODE_ENV === "development") {
+if (!env.isDev) {
   sequelize.sync({ alter: true });
 }
 

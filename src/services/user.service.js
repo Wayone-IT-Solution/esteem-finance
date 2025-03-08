@@ -42,7 +42,7 @@ class UserService extends Service {
     user = user.toJSON();
     delete user.password;
     return {
-      token: createToken({ email }),
+      token: createToken({ email, id: user.id }),
       userData: {
         ...user,
       },

@@ -9,17 +9,18 @@ class LoanQueryService extends Service {
 
   static async create(loanQueryData) {
     const { userId } = loanQueryData;
-    loanQueryData.email = "" + Math.random();
-    loanQueryData.driverLicenseNumber = "" + Math.random();
-    loanQueryData.status = loanQueryData.status ?? "In Progress";
+
+    if (!userId) {
+      throw {
+        status: false,
+        message: "User Id is required",
+        httpStatus: httpStatus.BAD_REQUEST,
+      };
+    }
+
+    loanQueryData.status = "In Progress";
     const loanQuery = new this.Model(loanQueryData);
     await loanQuery.validate();
-    if (!userId) {
-      const password = generateRandomPassword(10);
-      loanQueryData.password = password;
-      const createdUser = await UserService.create(loanQueryData);
-      loanQueryData.userId = createdUser.id;
-    }
     if (loanQueryData.tradeCar) {
       const {
         tradeCar,
