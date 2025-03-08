@@ -12,6 +12,7 @@ Banner.initialize({
   },
   image: {
     type: DataTypes.STRING,
+    file: true,
     allowNull: false,
   },
   slug: {
