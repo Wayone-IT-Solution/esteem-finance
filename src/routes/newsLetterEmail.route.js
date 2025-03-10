@@ -14,7 +14,15 @@ router
       NewsLetterEmailController.create.bind(NewsLetterEmailController),
     ),
   )
-  .put(NewsLetterEmailController.update.bind(NewsLetterEmailController))
-  .delete(NewsLetterEmailController.deleteDoc.bind(NewsLetterEmailController));
+  .put(
+    asyncHandler(
+      NewsLetterEmailController.update.bind(NewsLetterEmailController),
+    ),
+  )
+  .delete(
+    asyncHandler(
+      NewsLetterEmailController.deleteDoc.bind(NewsLetterEmailController),
+    ),
+  );
 
 export default router;

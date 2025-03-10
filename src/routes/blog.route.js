@@ -8,7 +8,7 @@ router
   .route("/:id?")
   .get(asyncHandler(BlogController.get.bind(BlogController)))
   .post(asyncHandler(BlogController.create.bind(BlogController)))
-  .put(BlogController.update.bind(BlogController))
-  .delete(BlogController.deleteDoc.bind(BlogController));
+  .put(asyncHandler(BlogController.update.bind(BlogController)))
+  .delete(asyncHandler(BlogController.deleteDoc.bind(BlogController)));
 
 export default router;

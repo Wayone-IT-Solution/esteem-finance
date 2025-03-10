@@ -8,7 +8,7 @@ router
   .route("/:id?")
   .get(asyncHandler(ContactController.get.bind(ContactController)))
   .post(asyncHandler(ContactController.create.bind(ContactController)))
-  .put(ContactController.update.bind(ContactController))
-  .delete(ContactController.deleteDoc.bind(ContactController));
+  .put(asyncHandler(ContactController.update.bind(ContactController)))
+  .delete(asyncHandler(ContactController.deleteDoc.bind(ContactController)));
 
 export default router;

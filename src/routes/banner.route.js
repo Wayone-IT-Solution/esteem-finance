@@ -8,7 +8,7 @@ router
   .route("/:id?")
   .get(asyncHandler(BannerController.get.bind(BannerController)))
   .post(asyncHandler(BannerController.create.bind(BannerController)))
-  .put(BannerController.update.bind(BannerController))
-  .delete(BannerController.deleteDoc.bind(BannerController));
+  .put(asyncHandler(BannerController.update.bind(BannerController)))
+  .delete(asyncHandler(BannerController.deleteDoc.bind(BannerController)));
 
 export default router;
