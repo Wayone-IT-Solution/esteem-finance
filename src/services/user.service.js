@@ -7,6 +7,20 @@ import { createToken } from "#utils/jwt";
 class UserService extends Service {
   static Model = User;
 
+  static async get(id, filters) {
+    let userData = await super.get(id, filters);
+    if (id) {
+      userData = userData.toJSON();
+      delete userData.password;
+    } else {
+      userData.result.forEach((ele, index) => {
+        userData.result[index] = ele.toJSON();
+        delete userData.result[index].password;
+      });
+    }
+    return userData;
+  }
+
   static async create(userData) {
     const { role, nzCitizen } = userData;
     if (!role) {
