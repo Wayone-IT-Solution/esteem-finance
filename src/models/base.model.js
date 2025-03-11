@@ -125,6 +125,8 @@ class BaseModel extends Model {
   }
 
   static async findById(id, allowNull = false) {
+    this.idChecker(id);
+
     const data = await this.findByPk(id);
     if (allowNull) {
       return data;

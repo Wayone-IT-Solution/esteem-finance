@@ -50,6 +50,11 @@ class LoanQueryService extends Service {
     if (loanQueryData.homeOwnerShip === "NO") {
       loanQueryData.homeOwnerShip = "Rent";
     }
+    if (loanQueryData.nzWorkStatus === "YES") {
+      loanQueryData.nzWorkStatus = true;
+    } else {
+      loanQueryData.nzWorkStatus = false;
+    }
 
     await this.Model.create(loanQueryData);
     return loanQuery;
@@ -58,6 +63,15 @@ class LoanQueryService extends Service {
   static async update(id, loanQueryData) {
     delete loanQueryData.leadId;
     delete loanQueryData.userId;
+
+    if (loanQueryData.homeOwnerShip === "NO") {
+      loanQueryData.homeOwnerShip = "Rent";
+    }
+    if (loanQueryData.nzWorkStatus === "YES") {
+      loanQueryData.nzWorkStatus = true;
+    } else {
+      loanQueryData.nzWorkStatus = false;
+    }
 
     const data = await super.update(id, loanQueryData);
     return data;

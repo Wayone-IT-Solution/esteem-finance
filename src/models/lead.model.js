@@ -38,7 +38,7 @@ Lead.initialize(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    phone: {
+    mobileNo: {
       type: DataTypes.STRING,
       allowNull: false,
     },

@@ -10,7 +10,7 @@ class Service {
     if (!id) {
       return await this.Model.find(filters);
     }
-    return await this.Model.findByPk(id);
+    return await this.Model.findById(id);
   }
 
   static async getWithQuery(query) {
@@ -24,7 +24,7 @@ class Service {
   }
 
   static async deleteDoc(id) {
-    const document = await this.Model.findByPk(id);
+    const document = await this.Model.findById(id);
     await document.destroy({ force: true });
   }
 }

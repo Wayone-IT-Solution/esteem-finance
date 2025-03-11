@@ -71,25 +71,99 @@ LoanQuery.initialize(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    partnerMaritalStatus: {
+      type: DataTypes.STRING,
+    },
     dependents: {
       type: DataTypes.ENUM("1", "2", "3", "4+"),
       allowNull: false,
     },
+    partnerDependents: {
+      type: DataTypes.ENUM("1", "2", "3", "4+"),
+    },
     driverLicenseType: {
-      type: DataTypes.ENUM("Type 1", "Type 2"),
+      type: DataTypes.ENUM(
+        "Type 1",
+        "Type 2",
+        "Learner",
+        "Restricted",
+        "Full",
+        "Overseas",
+      ),
       allowNull: false,
+    },
+    partnerDriverLicenseType: {
+      type: DataTypes.ENUM(
+        "Type 1",
+        "Type 2",
+        "Learner",
+        "Restricted",
+        "Full",
+        "Overseas",
+      ),
     },
     driverLicenseNumber: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    partnerDriverLicenseNumber: {
+      type: DataTypes.STRING,
+    },
     driverLicenseVersion: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    partnerDriverLicenseVersion: {
+      type: DataTypes.STRING,
+    },
     driverLicenseDocument: {
       type: DataTypes.STRING,
       file: true,
+    },
+    partnerDriverLicenseDocument: {
+      type: DataTypes.STRING,
+      file: true,
+    },
+    nzWorkStatus: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      default: false,
+    },
+    nzResidentType: {
+      type: DataTypes.ENUM(
+        "NZ Citizen",
+        "NZ Resident",
+        "World Wide Visa",
+        "Australia",
+      ),
+    },
+    birthCountry: {
+      type: DataTypes.STRING,
+    },
+    citizenshipDetails: {
+      type: DataTypes.JSON,
+      validate: {
+        isValidJson(value) {
+          if (!Array.isArray(value) || !value.length) {
+            throw {
+              status: false,
+              message:
+                "Citizenship details must be an array containing citizenship details",
+              httpStatus: httpStatus.BAD_REQUEST,
+            };
+          }
+
+          for (const key of value) {
+            if (!key.length) {
+              throw {
+                status: false,
+                message: "Country of citizenship should be a valid country",
+                httpStatus: httpStatus.BAD_REQUEST,
+              };
+            }
+          }
+        },
+      },
     },
     homeOwnership: {
       type: DataTypes.ENUM("Owned", "Rent"),
@@ -106,7 +180,7 @@ LoanQuery.initialize(
       type: DataTypes.STRING,
     },
     employmentType: {
-      type: DataTypes.ENUM("Full-Time", "Part-Time", "Contract"),
+      type: DataTypes.ENUM("Full-Time", "Part-Time", "Casual", "Benificiary"),
     },
     timeInThisJob: {
       type: DataTypes.INTEGER,
@@ -117,6 +191,9 @@ LoanQuery.initialize(
     },
     takeHomeIncome: {
       type: DataTypes.DECIMAL(10, 2),
+    },
+    incomeType: {
+      type: DataTypes.ENUM("Weekly", "Fourth Night", "Monthly"),
     },
     partnerPaidFrequency: {
       type: DataTypes.ENUM("Bi-Weekly", "Weekly", "Monthly"),
@@ -247,6 +324,89 @@ LoanQuery.initialize(
               };
             }
           });
+        },
+      },
+    },
+    address: {
+      type: DataTypes.STRING,
+    },
+    city: {
+      type: DataTypes.STRING,
+    },
+    postalCode: {
+      type: DataTypes.STRING,
+    },
+    timeAtCurrentAddressInYears: {
+      type: DataTypes.INTEGER,
+    },
+    timeAtCurrentAddressInMonths: {
+      type: DataTypes.INTEGER,
+    },
+    country: {
+      type: DataTypes.STRING,
+    },
+    previousAddress: {
+      type: DataTypes.STRING,
+    },
+    previousCity: {
+      type: DataTypes.STRING,
+    },
+    previousPostalCode: {
+      type: DataTypes.STRING,
+    },
+    previousTimeAtCurrentAddressInYears: {
+      type: DataTypes.INTEGER,
+    },
+    previousTimeAtCurrentAddressInMonths: {
+      type: DataTypes.INTEGER,
+    },
+    previousCountry: {
+      type: DataTypes.STRING,
+    },
+    residentType: {
+      type: DataTypes.ENUM("Boarding", "Renting", "Owning"),
+    },
+    creditCardLimit: {
+      type: DataTypes.DECIMAL(10, 2),
+    },
+    creditCardMonthlyPayments: {
+      type: DataTypes.DECIMAL(10, 2),
+    },
+    loanBalance: {
+      type: DataTypes.DECIMAL(10, 2),
+    },
+    loanMonthlyPayments: {
+      type: DataTypes.DECIMAL(10, 2),
+    },
+    livingExpenses: {
+      type: DataTypes.DECIMAL(10, 2),
+    },
+    utilities: {
+      type: DataTypes.DECIMAL(10, 2),
+    },
+    motorVehicle: {
+      type: DataTypes.DECIMAL(10, 2),
+    },
+    totalMonthlyPayment: {
+      type: DataTypes.DECIMAL(10, 2),
+      validate: {
+        customValidator(value) {
+          const pass =
+            //this.value ===
+            this.creditCardMonthlyPayments +
+            this.loanMonthlyPayments +
+            this.livingExpenses +
+            this.utilities +
+            this.motorVehicle;
+
+          if (pass != value) {
+            throw {
+              status: false,
+              httpStatus: httpStatus.BAD_REQUEST,
+              message:
+                "Total monthly payment must match the sum of all the monthly payments",
+            };
+          }
         },
       },
     },

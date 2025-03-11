@@ -14,6 +14,7 @@ class UserService extends Service {
       delete userData.password;
     } else {
       userData.result.forEach((ele, index) => {
+        console.log(ele);
         userData.result[index] = ele.toJSON();
         delete userData.result[index].password;
       });
@@ -22,14 +23,10 @@ class UserService extends Service {
   }
 
   static async create(userData) {
-    const { role, nzCitizen } = userData;
+    const { role } = userData;
     if (!role) {
       userData.role = "user";
     }
-    if (nzCitizen === null || nzCitizen === undefined) {
-      userData.nzCitizen = false;
-    }
-
     const user = await super.create(userData);
     return user;
   }

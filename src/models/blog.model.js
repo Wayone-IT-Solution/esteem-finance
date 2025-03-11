@@ -1,4 +1,3 @@
-import slugify from "slugify";
 import BaseModel from "#models/base";
 import { DataTypes } from "sequelize";
 

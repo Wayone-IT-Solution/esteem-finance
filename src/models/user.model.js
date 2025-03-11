@@ -41,57 +41,6 @@ User.initialize(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    nzCitizen: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      default: false,
-    },
-    citizenshipDetails: {
-      type: DataTypes.JSON,
-      validate: {
-        isValidJson(value) {
-          if (!Array.isArray(value) || !value.length) {
-            throw {
-              status: false,
-              message:
-                "Citizenship details must be an array containing citizenship details",
-              httpStatus: httpStatus.BAD_REQUEST,
-            };
-          }
-
-          for (const key of value) {
-            if (!key.length) {
-              throw {
-                status: false,
-                message: "Country of citizenship should be a valid country",
-                httpStatus: httpStatus.BAD_REQUEST,
-              };
-            }
-          }
-        },
-      },
-    },
-    birthCountry: {
-      type: DataTypes.STRING,
-    },
-    address: {
-      type: DataTypes.STRING,
-    },
-    city: {
-      type: DataTypes.STRING,
-    },
-    postalCode: {
-      type: DataTypes.STRING,
-    },
-    timeAtCurrentAddressInYears: {
-      type: DataTypes.INTEGER,
-    },
-    timeAtCurrentAddressInMonths: {
-      type: DataTypes.INTEGER,
-    },
-    residentType: {
-      type: DataTypes.ENUM("Boarding", "Renting", "Owning"),
-    },
   },
   {
     hooks: {
