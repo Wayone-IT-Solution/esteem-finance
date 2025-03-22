@@ -5,8 +5,6 @@ import LoanQueryController from "#controllers/loanQuery";
 
 const router = express.Router();
 
-router.use(authMiddleware);
-
 router
   .route("/:id?")
   .get(asyncHandler(LoanQueryController.get.bind(LoanQueryController)))
