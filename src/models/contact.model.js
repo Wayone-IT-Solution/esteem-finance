@@ -26,5 +26,5 @@ Contact.initialize({
     type: DataTypes.TEXT,
   },
 });
-Contact.sync({ alter: true });
+
 export default Contact;
