@@ -1,5 +1,6 @@
 import Service from "#services/base";
 import LoanQuery from "#models/loanQuery";
+import httpStatus from "#utils/httpStatus";
 import UserService from "#services/user";
 import { generateRandomPassword } from "#utils/jwt";
 import { session } from "#middlewares/session";
