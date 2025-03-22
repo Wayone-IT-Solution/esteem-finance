@@ -23,23 +23,9 @@ class LoanQueryService extends Service {
     const loanQuery = new this.Model(loanQueryData);
     await loanQuery.validate();
     if (loanQueryData.tradeCar) {
-      const {
-        tradeCar,
-        vehicleMake,
-        vehicleModel,
-        vehicleYear,
-        vehicleVariant,
-        kmDriven,
-      } = loanQueryData;
+      const { vehicleVariant, kmDriven } = loanQueryData;
 
-      if (
-        !tradeCar ||
-        !vehicleMake ||
-        !vehicleModel ||
-        !vehicleYear ||
-        !vehicleVariant ||
-        !kmDriven
-      ) {
+      if (!vehicleVariant || !kmDriven) {
         throw {
           status: false,
           message: "All fields related to car trade are required",
