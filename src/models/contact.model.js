@@ -4,7 +4,11 @@ import { DataTypes } from "sequelize";
 class Contact extends BaseModel {}
 
 Contact.initialize({
-  name: {
+  firstName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  lastName: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -15,9 +19,12 @@ Contact.initialize({
     type: DataTypes.STRING,
     allowNull: false,
   },
-  source: {
+  subject: {
     type: DataTypes.STRING(500),
   },
+  message: {
+    type: DataTypes.TEXT,
+  },
 });
-
+Contact.sync({ alter: true });
 export default Contact;
