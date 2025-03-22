@@ -13,13 +13,6 @@ Lead.initialize(
       type: DataTypes.ENUM("Business", "Individual"),
       allowNull: false,
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: User,
-        key: User.primaryKeyAttribute,
-      },
-    },
     title: {
       type: DataTypes.ENUM("Mr", "Mrs", "Ms", "Dr"),
       allowNull: false,
@@ -45,10 +38,6 @@ Lead.initialize(
     dob: {
       type: DataTypes.DATE,
       allowNull: false,
-    },
-    callbackRequested: {
-      type: DataTypes.BOOLEAN,
-      default: false,
     },
   },
   {
