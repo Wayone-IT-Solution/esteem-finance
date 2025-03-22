@@ -12,21 +12,21 @@ LoanQuery.initialize(
       type: DataTypes.STRING,
       editable: false,
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: User,
-        key: User.primaryKeyAttribute,
-      },
-      allowNull: false,
-    },
-    leadId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Lead,
-        key: Lead.primaryKeyAttribute,
-      },
-    },
+    //userId: {
+    //  type: DataTypes.INTEGER,
+    //  references: {
+    //    model: User,
+    //    key: User.primaryKeyAttribute,
+    //  },
+    //  allowNull: false,
+    //},
+    //leadId: {
+    //  type: DataTypes.INTEGER,
+    //  references: {
+    //    model: Lead,
+    //    key: Lead.primaryKeyAttribute,
+    //  },
+    //},
     userType: {
       type: DataTypes.ENUM("Business", "Individual"),
       allowNull: false,
@@ -421,14 +421,15 @@ LoanQuery.initialize(
   },
 );
 
-Lead.hasMany(LoanQuery, {
-  foreignKey: "leadId",
-  as: "loanQueries",
-});
-
-User.hasMany(LoanQuery, {
-  foreignKey: "userId",
-  as: "loanQueries",
-});
+//Lead.hasMany(LoanQuery, {
+//  foreignKey: "leadId",
+//  as: "loanQueries",
+//});
+//
+//User.hasMany(LoanQuery, {
+//  foreignKey: "userId",
+//  as: "loanQueries",
+//});
+//
 
 export default LoanQuery;

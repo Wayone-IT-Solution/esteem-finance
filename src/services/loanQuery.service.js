@@ -8,15 +8,15 @@ class LoanQueryService extends Service {
   static Model = LoanQuery;
 
   static async create(loanQueryData) {
-    const { userId } = loanQueryData;
-
-    if (!userId) {
-      throw {
-        status: false,
-        message: "User Id is required",
-        httpStatus: httpStatus.BAD_REQUEST,
-      };
-    }
+    //const { userId } = loanQueryData;
+    //
+    //if (!userId) {
+    //  throw {
+    //    status: false,
+    //    message: "User Id is required",
+    //    httpStatus: httpStatus.BAD_REQUEST,
+    //  };
+    //}
 
     loanQueryData.status = "In Progress";
     const loanQuery = new this.Model(loanQueryData);
