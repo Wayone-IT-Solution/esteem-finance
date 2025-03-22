@@ -61,7 +61,7 @@ class UserService extends Service {
   }
 }
 
-async function defaultUser() {
+export async function defaultUser() {
   const existing = await User.findAll({});
   if (existing.length) return;
   const user = {
@@ -87,7 +87,5 @@ async function defaultUser() {
 
   await User.create(user);
 }
-
-defaultUser();
 
 export default UserService;

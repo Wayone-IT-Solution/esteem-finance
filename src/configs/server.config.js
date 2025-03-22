@@ -2,6 +2,7 @@ import path from "path";
 import cors from "cors";
 import multer from "multer";
 import express from "express";
+import { defaultUser } from "#services/user";
 import env from "#configs/env";
 import { fileURLToPath } from "url";
 import routeMapper from "#routes/index";
@@ -15,7 +16,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const server = express();
 
 if (!env.isDev) {
-  sequelize.sync({ alter: true });
+  await sequelize.sync({ alter: true });
+  defaultUser();
 }
 
 server.use(cors());
