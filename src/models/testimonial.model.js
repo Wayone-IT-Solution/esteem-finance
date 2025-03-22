@@ -9,7 +9,7 @@ Testimonial.initialize({
     allowNull: false,
   },
   rating: {
-    type: DataTypes.DECIMAL(10, 2),
+    type: DataTypes.INTEGER,
   },
   review: {
     type: DataTypes.TEXT,
