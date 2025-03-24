@@ -9,7 +9,7 @@ Faq.initialize({
     allowNull: false,
   },
   answer: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
 });
