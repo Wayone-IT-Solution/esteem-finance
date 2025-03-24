@@ -175,8 +175,8 @@ class BaseModel extends Model {
         const filePath = path.join(uploadsDir, newFileName);
 
         await sharp(file.buffer)
-          .resize(800)
-          .jpeg({ quality: 70 })
+          .resize(1600)
+          .jpeg({ quality: 80 })
           .toFile(filePath);
 
         paths[fieldName] =
