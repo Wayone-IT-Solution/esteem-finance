@@ -12,6 +12,9 @@ Banner.initialize({
   subtitle: {
     type: DataTypes.STRING,
   },
+  order: {
+    type: DataTypes.INTEGER,
+  },
   image: {
     type: DataTypes.STRING,
     file: true,
