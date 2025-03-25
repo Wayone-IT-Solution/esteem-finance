@@ -27,6 +27,9 @@ Banner.initialize({
   description: {
     type: DataTypes.TEXT,
   },
+  mobile: {
+    type: DataTypes.BOOLEAN,
+  },
 });
 
 export default Banner;
