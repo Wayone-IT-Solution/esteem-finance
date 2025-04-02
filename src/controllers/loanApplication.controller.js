@@ -1,5 +1,6 @@
 import LoanApplicationService from "#services/loanApplication";
 import Controller from "#controllers/base";
+import httpStatus from "http-status";
 import { sendResponse } from "#utils/response";
 
 class LoanApplicationController extends Controller {
