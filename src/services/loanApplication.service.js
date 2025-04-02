@@ -1,4 +1,5 @@
 import LoanApplication from "#models/loanApplication";
+import httpStatus from "http-status";
 import Service from "#services/base";
 
 class LoanApplicationService extends Service {
