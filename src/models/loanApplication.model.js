@@ -4,6 +4,14 @@ import { DataTypes } from "sequelize";
 class LoanApplication extends BaseModel {}
 
 LoanApplication.initialize({
+  otp: {
+    type: DataTypes.INTEGER,
+    defaultValue: 123456,
+  },
+  otpVerified: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
   loanAmount: {
     type: DataTypes.DECIMAL(10, 2),
     allowNull: false,
@@ -149,6 +157,10 @@ LoanApplication.initialize({
   timeAtEmployerMonths: {
     type: DataTypes.INTEGER,
     allowNull: false,
+  },
+  status: {
+    type: DataTypes.ENUM("Pending", "Metallized", "In-Progess"),
+    defaultValue: "Pending",
   },
 });
 

@@ -5,6 +5,14 @@ import LoanApplicationController from "#controllers/loanApplication";
 const router = express.Router();
 
 router
+  .route("/verify-otp/:id")
+  .put(
+    asyncHandler(
+      LoanApplicationController.verifyOtp.bind(LoanApplicationController),
+    ),
+  );
+
+router
   .route("/:id?")
   .get(
     asyncHandler(LoanApplicationController.get.bind(LoanApplicationController)),
