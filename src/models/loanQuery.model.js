@@ -3,6 +3,7 @@ import User from "#models/user";
 import BaseModel from "#models/base";
 import { DataTypes } from "sequelize";
 import httpStatus from "#utils/httpStatus";
+import LoanApplication from "#models/loanApplication";
 
 class LoanQuery extends BaseModel {}
 
@@ -30,6 +31,13 @@ LoanQuery.initialize(
     userType: {
       type: DataTypes.ENUM("Business", "Individual"),
       allowNull: false,
+    },
+    loanApplicationId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: LoanApplication,
+        key: LoanApplication.primaryKeyAttribute,
+      },
     },
     loanAppliedFor: {
       type: DataTypes.ENUM("Car", "Van", "Others"),

@@ -159,7 +159,13 @@ LoanApplication.initialize({
     allowNull: false,
   },
   status: {
-    type: DataTypes.ENUM("Pending", "Metallized", "In-Progess"),
+    type: DataTypes.ENUM(
+      "Pending",
+      "Metallized",
+      "In-Progess",
+      "Send Form",
+      "Completed",
+    ),
     defaultValue: "Pending",
   },
 });
