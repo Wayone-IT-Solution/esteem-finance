@@ -8,8 +8,8 @@ class LoanApplicationService extends Service {
   static Model = LoanApplication;
 
   static async create(data) {
-    const code = Math.floor(100000 + Math.random() * 900000);
-    data.otp = code;
+    // const code = Math.floor(100000 + Math.random() * 900000);
+    // data.otp = code;
     const doc = await this.Model.create(data);
 
     var smsMessage = new api.SmsMessage();
