@@ -59,6 +59,9 @@ LoanApplication.initialize({
     ),
     allowNull: false,
   },
+  countryCode: {
+    type: DataTypes.STRING,
+  },
   mobile: {
     type: DataTypes.STRING,
     allowNull: false,
