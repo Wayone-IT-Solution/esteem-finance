@@ -3,6 +3,7 @@ import api from "../utils/sms.util.cjs";
 import httpStatus from "http-status";
 import env from "#configs/env";
 import Service from "#services/base";
+import LoanQueryService from "#services/loanQuery";
 
 class LoanApplicationService extends Service {
   static Model = LoanApplication;

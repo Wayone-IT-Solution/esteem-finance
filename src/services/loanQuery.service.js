@@ -4,22 +4,23 @@ import httpStatus from "#utils/httpStatus";
 import UserService from "#services/user";
 import { generateRandomPassword } from "#utils/jwt";
 import { session } from "#middlewares/session";
+import LoanApplicationService from "#services/loanApplication";
 
 class LoanQueryService extends Service {
   static Model = LoanQuery;
 
   static async create(loanQueryData) {
-    //const { userId } = loanQueryData;
-    //
-    //if (!userId) {
-    //  throw {
-    //    status: false,
-    //    message: "User Id is required",
-    //    httpStatus: httpStatus.BAD_REQUEST,
-    //  };
-    //}
+    const { loanApplicationId } = loanQueryData;
 
-    loanQueryData.status = "In Progress";
+    if (!loanApplicationId) {
+      throw {
+        status: false,
+        message: "LoanApplication ID is required",
+        httpStatus: httpStatus.BAD_REQUEST,
+      };
+    }
+
+    loanQueryData.status = "Pending";
     const loanQuery = new this.Model(loanQueryData);
     await loanQuery.validate();
     if (loanQueryData.tradeCar) {
@@ -44,6 +45,9 @@ class LoanQueryService extends Service {
     }
 
     await this.Model.create(loanQueryData);
+    await LoanApplicationService.update(loanApplicationId, {
+      status: "Completed",
+    });
     return loanQuery;
   }
 
