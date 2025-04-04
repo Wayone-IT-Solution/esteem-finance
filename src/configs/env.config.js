@@ -13,6 +13,8 @@ const env = cleanEnv(process.env, {
   DB_PORT: num({ default: 3306 }),
   DB_DIALECT: str({ default: "mysql" }),
   NODE_ENV: str(),
+  CLICKSEND_USER: str(),
+  CLICKSEND_API: str(),
 });
 
 export default env;
