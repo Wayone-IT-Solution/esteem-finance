@@ -29,7 +29,7 @@ class LoanApplicationService extends Service {
     smsApi
       .smsSendPost(smsCollection)
       .then(function (response) {
-        console.log(response.body);
+        console.log(JSON.stringify(response.body));
       })
       .catch(function (err) {
         console.error(err.body);
