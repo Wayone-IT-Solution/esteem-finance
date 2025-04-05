@@ -52,11 +52,11 @@ class LoanApplicationService extends Service {
     await doc.save();
   }
 
-  static async update(id, update) {
+  static async update(id, updates) {
     const doc = await this.Model.findById(id);
 
-    if (update.status === "Not Eligible") {
-      if (!update.disapprovalReason) {
+    if (updates.status === "Not Eligible") {
+      if (!updates.disapprovalReason) {
         throw {
           status: false,
           message: "Disapproval reason is required",
@@ -64,7 +64,7 @@ class LoanApplicationService extends Service {
         };
       }
     } else {
-      update.disapprovalReason = "";
+      updates.disapprovalReason = "";
     }
     doc.update(updates);
     await doc.save();
