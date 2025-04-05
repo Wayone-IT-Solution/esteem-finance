@@ -165,6 +165,9 @@ LoanApplication.initialize({
     type: DataTypes.ENUM("Pending", "Eligible", "Not Eligible", "Completed"),
     defaultValue: "Pending",
   },
+  disapprovalReason: {
+    type: DataTypes.TEXT,
+  },
 });
 
 export default LoanApplication;
