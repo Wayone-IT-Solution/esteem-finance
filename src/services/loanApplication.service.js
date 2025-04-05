@@ -13,27 +13,72 @@ class LoanApplicationService extends Service {
     // data.otp = code;
     const doc = await this.Model.create(data);
 
-    var smsMessage = new api.SmsMessage();
+    // var smsMessage = new api.SmsMessage();
+    //
+    // var smsApi = new api.SMSApi(env.CLICKSEND_USER, env.CLICKSEND_API);
+    //
+    // smsMessage.to = doc.countryCode + doc.mobile;
+    // smsMessage.body = `Your One-Time Password (OTP) for verification is: ${doc.otp} This code is valid for the next 10 minutes. For your security, please do not share this code with anyone.`;
+    //
+    // //TODO: ADD A CRON TO DELETE OTP
+    //
+    // var smsCollection = new api.SmsMessageCollection();
+    //
+    // smsCollection.messages = [smsMessage];
+    //
+    // smsApi
+    //   .smsSendPost(smsCollection)
+    //   .then(function (response) {
+    //     console.log(JSON.stringify(response.body));
+    //   })
+    //   .catch(function (err) {
+    //     console.error(err.body);
+    //   });
+    //
 
-    var smsApi = new api.SMSApi(env.CLICKSEND_USER, env.CLICKSEND_API);
+    const logoUrl = env.LOGO;
 
-    smsMessage.to = doc.countryCode + doc.mobile;
-    smsMessage.body = `Your One-Time Password (OTP) for verification is: ${doc.otp} This code is valid for the next 10 minutes. For your security, please do not share this code with anyone.`;
+    const emailContent = `<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{APP_NAME}} OTP Verification</title>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #f6f6f6; font-family: Arial, sans-serif;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px;">
+      <tr>
+        <td align="center" style="padding-bottom: 20px;">
+          <img src="${logoUrl}" alt="Esteem Finance Logo" style="max-width: 150px;" />
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 20px; color: #333333;">
+          <h2 style="margin-top: 0; text-align: center;">Your OTP Code</h2>
+          <p style="text-align: center; font-size: 16px;">Use the following OTP to verify your email address:</p>
+          <p style="text-align: center; font-size: 32px; letter-spacing: 5px; font-weight: bold; color: #2e7d32;">
+            ${doc.otp}
+          </p>
+          <p style="text-align: center; font-size: 14px; color: #888888;">This code is valid for the next 10 minutes.</p>
+          <p style="text-align: center; font-size: 14px; color: #888888;">If you did not request this, please ignore this email.</p>
+        </td>
+      </tr>
+      <tr>
+        <td align="center" style="padding-top: 30px; font-size: 12px; color: #aaaaaa;">
+          &copy; Esteem Finance ${new Date().getFullYear()}. All rights reserved.
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+`;
 
-    //TODO: ADD A CRON TO DELETE OTP
-
-    var smsCollection = new api.SmsMessageCollection();
-
-    smsCollection.messages = [smsMessage];
-
-    smsApi
-      .smsSendPost(smsCollection)
-      .then(function (response) {
-        console.log(JSON.stringify(response.body));
-      })
-      .catch(function (err) {
-        console.error(err.body);
-      });
+    const mailOptions = {
+      from: '"Esteem Finance" <esteemcars77@gmail.com>', // Sender's email
+      to: doc.email, // Receiver's email
+      subject: "OTP Verification", // Email subject
+      html: emailContent,
+    };
+    await sendEmail(mailOptions);
 
     return doc;
   }

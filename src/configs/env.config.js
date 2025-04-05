@@ -15,6 +15,7 @@ const env = cleanEnv(process.env, {
   NODE_ENV: str(),
   CLICKSEND_USER: str(),
   CLICKSEND_API: str(),
+  LOGO: str(),
 });
 
 export default env;
