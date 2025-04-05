@@ -1,6 +1,7 @@
 import LoanApplication from "#models/loanApplication";
 import api from "../utils/sms.util.cjs";
 import httpStatus from "http-status";
+import { sendEmail } from "#configs/nodeMailer";
 import env from "#configs/env";
 import Service from "#services/base";
 import LoanQueryService from "#services/loanQuery";
