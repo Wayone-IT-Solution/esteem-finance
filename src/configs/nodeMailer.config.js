@@ -11,10 +11,7 @@ export const sendEmail = async (mailOptions) => {
       },
     });
 
-    const info = await transporter.sendMail({
-      from: `"${env.APP_NAME}" <${env.SMTP_USER}>`,
-      ...mailOptions,
-    });
+    const info = await transporter.sendMail(mailOptions);
 
     console.log("Email sent:", info.messageId);
   } catch (error) {
