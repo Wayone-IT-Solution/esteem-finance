@@ -90,7 +90,7 @@ class LoanApplicationService extends Service {
         },
       ],
     };
-    await sendEmail(mailOptions);
+    sendEmail(mailOptions);
 
     return doc;
   }
