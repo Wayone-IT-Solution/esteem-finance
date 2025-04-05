@@ -66,6 +66,9 @@ class LoanApplicationService extends Service {
     } else {
       update.disapprovalReason = "";
     }
+    doc.update(updates);
+    await doc.save();
+    return doc;
   }
 }
 
