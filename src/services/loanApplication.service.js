@@ -5,13 +5,16 @@ import { sendEmail } from "#configs/nodeMailer";
 import env from "#configs/env";
 import Service from "#services/base";
 import LoanQueryService from "#services/loanQuery";
+import fs from "fs";
+
+const base64Logo = fs.readFileSync("esteemf.svg", { encoding: "base64" });
 
 class LoanApplicationService extends Service {
   static Model = LoanApplication;
 
   static async create(data) {
-    // const code = Math.floor(100000 + Math.random() * 900000);
-    // data.otp = code;
+    const code = Math.floor(100000 + Math.random() * 900000);
+    data.otp = code;
     const doc = await this.Model.create(data);
 
     // var smsMessage = new api.SmsMessage();
@@ -49,7 +52,7 @@ class LoanApplicationService extends Service {
     <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px;">
       <tr>
         <td align="center" style="padding-bottom: 20px;">
-          <img src="${logoUrl}" alt="Esteem Finance Logo" style="max-width: 150px;" />
+          <img src="${base64Logo}" alt="Esteem Finance Logo" style="max-width: 150px;" />
         </td>
       </tr>
       <tr>
