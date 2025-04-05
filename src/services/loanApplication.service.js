@@ -7,8 +7,7 @@ import Service from "#services/base";
 import LoanQueryService from "#services/loanQuery";
 import fs from "fs";
 
-const base64Logo = fs.readFileSync("esteemf.svg", { encoding: "base64" });
-
+const base64Logo = ""
 class LoanApplicationService extends Service {
   static Model = LoanApplication;
 
