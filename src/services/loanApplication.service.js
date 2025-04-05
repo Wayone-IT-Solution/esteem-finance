@@ -52,7 +52,7 @@ class LoanApplicationService extends Service {
     <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px;">
       <tr>
         <td align="center" style="padding-bottom: 20px;">
-          <img src="${base64Logo}" alt="Esteem Finance Logo" style="max-width: 150px;" />
+          <img src="data:image/png;base64,${base64Logo}" alt="Esteem Finance Logo" style="max-width: 150px;" />
         </td>
       </tr>
       <tr>
