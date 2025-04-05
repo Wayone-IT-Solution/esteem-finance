@@ -51,6 +51,22 @@ class LoanApplicationService extends Service {
     doc.otpVerified = true;
     await doc.save();
   }
+
+  static async update(id, update) {
+    const doc = await this.Model.findById(id);
+
+    if (update.status === "Not Eligible") {
+      if (!update.disapprovalReason) {
+        throw {
+          status: false,
+          message: "Disapproval reason is required",
+          httpStatus: 400,
+        };
+      }
+    } else {
+      update.disapprovalReason = "";
+    }
+  }
 }
 
 export default LoanApplicationService;
