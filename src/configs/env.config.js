@@ -16,6 +16,8 @@ const env = cleanEnv(process.env, {
   CLICKSEND_USER: str(),
   CLICKSEND_API: str(),
   LOGO: str(),
+  SMTP_USER: str(),
+  SMTP_PASS: str(),
 });
 
 export default env;
