@@ -6,7 +6,6 @@ import env from "#configs/env";
 import Service from "#services/base";
 import LoanQueryService from "#services/loanQuery";
 import fs from "fs";
-import path from "path";
 
 const base64Logo = fs.readFileSync("esteemf.svg", { encoding: "base64" });
 
@@ -53,7 +52,7 @@ class LoanApplicationService extends Service {
     <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px;">
       <tr>
         <td align="center" style="padding-bottom: 20px;">
-          <img src="cid:logo" alt="Esteem Finance Logo" style="max-width: 150px;" />
+          <img src="${base64Logo}" alt="Esteem Finance Logo" style="max-width: 150px;" />
         </td>
       </tr>
       <tr>
@@ -82,13 +81,6 @@ class LoanApplicationService extends Service {
       to: doc.email, // Receiver's email
       subject: "OTP Verification", // Email subject
       html: emailContent,
-      attachments: [
-        {
-          filename: "esteemf.svg",
-          path: path.resolve("esteemf.svg"), // make sure this path is correct
-          cid: "logo", // same as used in HTML img src
-        },
-      ],
     };
     sendEmail(mailOptions);
 
