@@ -7,14 +7,14 @@ import Service from "#services/base";
 import LoanQueryService from "#services/loanQuery";
 import fs from "fs";
 
-const base64Logo = ""
+const base64Logo = "";
 class LoanApplicationService extends Service {
   static Model = LoanApplication;
 
   static async create(data) {
     const code = Math.floor(100000 + Math.random() * 900000);
     data.otp = code;
-    const doc = await this.Model.create(data);
+    let doc = await this.Model.create(data);
 
     // var smsMessage = new api.SmsMessage();
     //
@@ -82,6 +82,9 @@ class LoanApplicationService extends Service {
     };
     sendEmail(mailOptions);
 
+    doc = doc.toJSON();
+
+    delete doc.otp;
     return doc;
   }
 
