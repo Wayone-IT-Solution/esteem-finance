@@ -15,6 +15,7 @@ class LoanApplicationService extends Service {
     const code = Math.floor(100000 + Math.random() * 900000);
     data.otp = code;
     let doc = await this.Model.create(data);
+    const APP_NAME = "Esteem Finance";
 
     // var smsMessage = new api.SmsMessage();
     //
@@ -45,7 +46,7 @@ class LoanApplicationService extends Service {
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>{{APP_NAME}} OTP Verification</title>
+    <title>${APP_NAME} OTP Verification</title>
   </head>
   <body style="margin: 0; padding: 0; background-color: #f6f6f6; font-family: Arial, sans-serif;">
     <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px;">
