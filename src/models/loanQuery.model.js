@@ -188,7 +188,13 @@ LoanQuery.initialize(
       type: DataTypes.STRING,
     },
     employmentType: {
-      type: DataTypes.ENUM("Full-Time", "Part-Time", "Casual", "Benificiary"),
+      type: DataTypes.ENUM(
+        "Full-Time",
+        "Part-Time",
+        "Casual",
+        "Benificiary",
+        "Super-Annuation",
+      ),
     },
     timeInThisJob: {
       type: DataTypes.INTEGER,
