@@ -163,7 +163,17 @@ LoanApplication.initialize({
     allowNull: false,
   },
   status: {
-    type: DataTypes.ENUM("Pending", "Eligible", "Not Eligible", "Completed"),
+    type: DataTypes.ENUM(
+      "Pending",
+      "Eligible",
+      "Not Eligible",
+      "Completed",
+      "Lost",
+      "Working",
+      "Progress",
+      "No Response",
+      "Won",
+    ),
     defaultValue: "Pending",
   },
   disapprovalReason: {
