@@ -117,7 +117,7 @@ LoanApplication.initialize({
   },
   monthlyCost: {
     type: DataTypes.DECIMAL(10, 2),
-    allowNull: false,
+    allowNull: true,
   },
   region: {
     type: DataTypes.STRING,
@@ -178,6 +178,29 @@ LoanApplication.initialize({
   },
   disapprovalReason: {
     type: DataTypes.TEXT,
+  },
+  licenseFile: {
+    type: DataTypes.STRING,
+    file: true,
+  },
+  licenseNumber: {
+    type: DataTypes.STRING,
+  },
+  payslip1: {
+    type: DataTypes.STRING,
+    file: true,
+  },
+  payslip2: {
+    type: DataTypes.STRING,
+    file: true,
+  },
+  photo: {
+    type: DataTypes.STRING,
+    file: true,
+  },
+  winzBreakdown: {
+    type: DataTypes.STRING,
+    file: true,
   },
 });
 
