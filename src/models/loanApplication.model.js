@@ -203,6 +203,9 @@ LoanApplication.initialize({
     type: DataTypes.STRING,
     file: true,
   },
+  leadStatus: {
+    type: DataTypes.ENUM(["Qualified Lead", "Lead"]),
+  },
 });
 
 export default LoanApplication;
