@@ -174,17 +174,16 @@ class BaseModel extends Model {
         const newFileName = `${fieldName}${ext}`;
         const filePath = path.join(uploadsDir, newFileName);
 
-        await sharp(file.buffer)
-          .resize(1600)
-          .jpeg({ quality: 80 })
-          .toFile(filePath);
+        // Write the original file buffer directly (no sharp)
+        await fs.writeFile(filePath, file.buffer);
 
         paths[fieldName] =
-          filePath.split("/src")[1] ?? filePath.split("\src")[1];
+          filePath.split("/src")[1] ?? filePath.split("\\src")[1];
 
         data[fieldName] = paths[fieldName];
       }
     }
+
     Object.assign(data, paths);
     await data.save();
   }
