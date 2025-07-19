@@ -147,6 +147,7 @@ LoanApplication.initialize({
       "WINZ & ACC",
       "Studylink",
       "Super-Annuation",
+      "Casual",
     ),
     allowNull: false,
   },
