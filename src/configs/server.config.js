@@ -22,7 +22,7 @@ if (env.isDev) {
 
 server.use(cors());
 server.use(multer().any());
-server.use(express.json());
+server.use(express.json({ limit: "50mb" }));
 server.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 server.use(bodyParser);
 server.use(sessionMiddleware);

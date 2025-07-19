@@ -89,7 +89,7 @@ LoanApplication.initialize({
   },
   streetAddress: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   addressLine2: {
     type: DataTypes.STRING,
