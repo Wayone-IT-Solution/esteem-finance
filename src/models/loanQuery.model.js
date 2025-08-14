@@ -94,6 +94,7 @@ LoanQuery.initialize(
         "Type 1",
         "Type 2",
         "Learner",
+        "International",
         "Restricted",
         "Full",
         "Overseas",
